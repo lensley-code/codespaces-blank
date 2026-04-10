@@ -4,6 +4,7 @@ import '@calcom/atoms/globals.min.css'
 import { CAL_USERNAME, CAL_EVENT_SLUGS } from './calConfig'
 import SocialFeed from './SocialFeed'
 import Testimonials from './Testimonials'
+import LeadPopup from './LeadPopup'
 import './App.css'
 
 const OFFERINGS = [
@@ -332,6 +333,8 @@ function App() {
           onClose={handleCloseCalendar}
         />
       )}
+
+      <LeadPopup />
     </>
   )
 }
