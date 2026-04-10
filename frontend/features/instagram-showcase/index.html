@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Instagram Showcase Feature</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="instagram-showcase" aria-labelledby="instagram-showcase-heading">
+        <header class="instagram-showcase__header">
+          <h2 id="instagram-showcase-heading">Latest Tips & Videos</h2>
+          <p>
+            A plug-in section that mirrors your social video strip and can be embedded into any existing
+            page layout.
+          </p>
+        </header>
+
+        <div class="showcase-track" id="showcaseTrack" role="list" aria-label="Instagram content previews">
+          <article class="showcase-card" role="listitem">
+            <span class="episode-tag">EP 5</span>
+            <img
+              src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=600&q=80"
+              alt="Woman planning a schedule on laptop"
+              loading="lazy"
+            />
+            <button class="play-button" aria-label="Play time blocking video">▶</button>
+            <p class="overlay-copy">time blocking</p>
+          </article>
+
+          <article class="showcase-card" role="listitem">
+            <span class="episode-tag">EP 4</span>
+            <img
+              src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?auto=format&fit=crop&w=600&q=80"
+              alt="Hands typing on a keyboard"
+              loading="lazy"
+            />
+            <button class="play-button" aria-label="Play mindset video">▶</button>
+            <p class="overlay-copy">shift your beliefs around discomfort</p>
+          </article>
+
+          <article class="showcase-card" role="listitem">
+            <span class="episode-tag">EP 3</span>
+            <img
+              src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=600&q=80"
+              alt="Creator posing near staircase"
+              loading="lazy"
+            />
+            <button class="play-button" aria-label="Play stop distraction video">▶</button>
+            <p class="overlay-copy">stop distraction</p>
+          </article>
+
+          <article class="showcase-card" role="listitem">
+            <span class="episode-tag">EP 2</span>
+            <img
+              src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80"
+              alt="Woman resting on sofa"
+              loading="lazy"
+            />
+            <button class="play-button" aria-label="Play so distracted video">▶</button>
+            <p class="overlay-copy">so distracted</p>
+          </article>
+
+          <article class="showcase-card" role="listitem">
+            <span class="episode-tag">EP 1</span>
+            <img
+              src="https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=600&q=80"
+              alt="Man working at desk with microphone"
+              loading="lazy"
+            />
+            <button class="play-button" aria-label="Play procrastinating video">▶</button>
+            <p class="overlay-copy">how to stop procrastinating</p>
+          </article>
+
+          <article class="showcase-card" role="listitem">
+            <img
+              src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=600&q=80"
+              alt="Woman meditating outdoors"
+              loading="lazy"
+            />
+            <button class="play-button" aria-label="Play thank you video">▶</button>
+            <p class="overlay-copy">A Thank You For 10M</p>
+          </article>
+        </div>
+
+        <div class="showcase-actions">
+          <button class="ghost-btn" id="loadMoreBtn" type="button">Load More</button>
+          <a class="instagram-btn" href="https://instagram.com" target="_blank" rel="noreferrer noopener">
+            Follow on Instagram
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <script src="./feature.js"></script>
+  </body>
+</html>
