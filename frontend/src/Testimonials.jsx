@@ -49,8 +49,7 @@ function ArrowRight() {
 function usePerPage() {
   const getPerPage = () => {
     if (typeof window === 'undefined') return 3
-    if (window.innerWidth >= 1024) return 3
-    if (window.innerWidth >= 600) return 2
+    if (window.innerWidth >= 600) return 3
     return 1
   }
 
