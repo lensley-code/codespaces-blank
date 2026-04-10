@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spiritual Guide — Free Book Offer</title>
+  <link rel="stylesheet" href="css/popup.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #070e17;
+      color: #c8d4db;
+      min-height: 100vh;
+    }
+
+    .page-header {
+      text-align: center;
+      padding: 80px 24px 48px;
+    }
+
+    .page-header h1 {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 42px;
+      color: #d4a54a;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .page-header p {
+      font-size: 18px;
+      color: rgba(200, 212, 219, 0.65);
+      max-width: 560px;
+      margin: 0 auto 40px;
+      line-height: 1.6;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 16px 40px;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: #0b1d2c;
+      background: linear-gradient(135deg, #e8c56d 0%, #d4a54a 100%);
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(212, 165, 74, 0.35);
+    }
+
+    .page-content {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 40px 24px 120px;
+    }
+
+    .page-content section {
+      margin-bottom: 60px;
+    }
+
+    .page-content h2 {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 28px;
+      color: #d4a54a;
+      margin-bottom: 16px;
+    }
+
+    .page-content p {
+      font-size: 16px;
+      line-height: 1.75;
+      color: rgba(200, 212, 219, 0.7);
+      margin-bottom: 16px;
+    }
+
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, #d4a54a, transparent);
+      margin: 40px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-header">
+    <h1>Discover Your Celestial Path</h1>
+    <p>Unlock the wisdom of the stars with personalized astrological readings and spiritual guidance.</p>
+    <button class="cta-button open-popup-btn">Get Your Free Spiritual Guide</button>
+  </div>
+
+  <div class="page-content">
+    <section>
+      <h2>Your Personal Star Map</h2>
+      <p>Every soul is born under a unique celestial configuration. Our expert astrologers analyze the precise positions of planets and stars at the moment of your birth to create a comprehensive spiritual profile that illuminates your life's purpose.</p>
+      <p>Whether you're seeking clarity in relationships, career guidance, or deeper self-understanding, the stars hold ancient wisdom waiting to be discovered.</p>
+    </section>
+
+    <div class="divider"></div>
+
+    <section>
+      <h2>What You'll Receive</h2>
+      <p>Your free spiritual guide includes a personalized astrological chart reading, our complete 2024 celestial handbook, and monthly cosmic forecasts delivered straight to your inbox.</p>
+      <p>Join thousands of seekers who have already begun their journey toward cosmic alignment and spiritual growth.</p>
+    </section>
+
+    <div class="divider"></div>
+
+    <section>
+      <h2>Begin Your Journey</h2>
+      <p>The universe has a message for you. Take the first step on your spiritual path by claiming your free celestial guide today.</p>
+      <button class="cta-button open-popup-btn" style="margin-top: 16px;">Claim Your Free Guide</button>
+    </section>
+  </div>
+
+  <script src="js/popup.js"></script>
+  <script>
+    FreeBookPopup.init({
+      delayMs: 0,
+      scrollPercent: 0,
+      triggerSelector: '.open-popup-btn',
+      onSubmit: function (email) {
+        console.log('[Newsletter Signup] Email:', email);
+        // Integration point: replace with Mailchimp/ConvertKit API call
+        // Example for Mailchimp:
+        // fetch('https://YOUR_MAILCHIMP_ENDPOINT', {
+        //   method: 'POST',
+        //   body: JSON.stringify({ email_address: email, status: 'subscribed' }),
+        // });
+      },
+    });
+  </script>
+</body>
+</html>

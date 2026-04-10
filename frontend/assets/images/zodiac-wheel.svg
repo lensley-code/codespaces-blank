@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1a4a5e"/>
+      <stop offset="70%" stop-color="#0f3344"/>
+      <stop offset="100%" stop-color="#0a2533"/>
+    </radialGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="20%">
+      <stop offset="0%" stop-color="#f5d98e" stop-opacity="0.8"/>
+      <stop offset="50%" stop-color="#c9a84c" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#c9a84c" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="sparkle">
+      <feGaussianBlur stdDeviation="1.5"/>
+    </filter>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e8c56d"/>
+      <stop offset="50%" stop-color="#f5e0a0"/>
+      <stop offset="100%" stop-color="#c9a84c"/>
+    </linearGradient>
+  </defs>
+
+  <circle cx="300" cy="300" r="300" fill="url(#bg)"/>
+
+  <!-- Sparkle dots -->
+  <g fill="#f5d98e" opacity="0.6">
+    <circle cx="50" cy="40" r="1" filter="url(#sparkle)"/>
+    <circle cx="120" cy="25" r="0.8"/>
+    <circle cx="200" cy="55" r="1.2" filter="url(#sparkle)"/>
+    <circle cx="430" cy="35" r="0.7"/>
+    <circle cx="500" cy="60" r="1.1" filter="url(#sparkle)"/>
+    <circle cx="550" cy="30" r="0.6"/>
+    <circle cx="80" cy="90" r="0.9"/>
+    <circle cx="350" cy="20" r="1"/>
+    <circle cx="470" cy="80" r="0.8" filter="url(#sparkle)"/>
+    <circle cx="30" cy="150" r="0.7"/>
+    <circle cx="560" cy="140" r="1" filter="url(#sparkle)"/>
+    <circle cx="520" cy="500" r="0.9"/>
+    <circle cx="70" cy="520" r="1.1" filter="url(#sparkle)"/>
+    <circle cx="150" cy="560" r="0.8"/>
+    <circle cx="440" cy="550" r="1"/>
+    <circle cx="350" cy="570" r="0.7" filter="url(#sparkle)"/>
+    <circle cx="100" cy="480" r="0.6"/>
+    <circle cx="500" cy="470" r="0.9"/>
+    <circle cx="180" cy="30" r="0.5"/>
+    <circle cx="400" cy="570" r="0.8"/>
+    <circle cx="55" cy="350" r="0.7"/>
+    <circle cx="545" cy="300" r="1" filter="url(#sparkle)"/>
+    <circle cx="530" cy="200" r="0.6"/>
+    <circle cx="60" cy="250" r="0.9" filter="url(#sparkle)"/>
+  </g>
+
+  <!-- Outer circle ring -->
+  <circle cx="300" cy="300" r="240" fill="none" stroke="url(#gold)" stroke-width="2" opacity="0.9"/>
+  <circle cx="300" cy="300" r="220" fill="none" stroke="url(#gold)" stroke-width="1" opacity="0.5"/>
+
+  <!-- Inner circle ring -->
+  <circle cx="300" cy="300" r="170" fill="none" stroke="url(#gold)" stroke-width="2" opacity="0.9"/>
+  <circle cx="300" cy="300" r="150" fill="none" stroke="url(#gold)" stroke-width="1" opacity="0.5"/>
+
+  <!-- Center glow -->
+  <circle cx="300" cy="300" r="80" fill="url(#glow)"/>
+
+  <!-- Center star burst -->
+  <g transform="translate(300,300)" fill="#f5d98e" opacity="0.9">
+    <polygon points="0,-20 3,-5 0,0 -3,-5" transform="rotate(0)"/>
+    <polygon points="0,-20 3,-5 0,0 -3,-5" transform="rotate(30)"/>
+    <polygon points="0,-20 3,-5 0,0 -3,-5" transform="rotate(60)"/>
+    <polygon points="0,-20 3,-5 0,0 -3,-5" transform="rotate(90)"/>
+    <polygon points="0,-20 3,-5 0,0 -3,-5" transform="rotate(120)"/>
+    <polygon points="0,-20 3,-5 0,0 -3,-5" transform="rotate(150)"/>
+    <polygon points="0,-20 3,-5 0,0 -3,-5" transform="rotate(180)"/>
+    <polygon points="0,-20 3,-5 0,0 -3,-5" transform="rotate(210)"/>
+    <polygon points="0,-20 3,-5 0,0 -3,-5" transform="rotate(240)"/>
+    <polygon points="0,-20 3,-5 0,0 -3,-5" transform="rotate(270)"/>
+    <polygon points="0,-20 3,-5 0,0 -3,-5" transform="rotate(300)"/>
+    <polygon points="0,-20 3,-5 0,0 -3,-5" transform="rotate(330)"/>
+    <circle cx="0" cy="0" r="6" fill="#f5e0a0"/>
+  </g>
+
+  <!-- Dividing lines (12 sections) -->
+  <g stroke="url(#gold)" stroke-width="1" opacity="0.7">
+    <line x1="300" y1="130" x2="300" y2="60" transform="rotate(0,300,300)"/>
+    <line x1="300" y1="130" x2="300" y2="60" transform="rotate(30,300,300)"/>
+    <line x1="300" y1="130" x2="300" y2="60" transform="rotate(60,300,300)"/>
+    <line x1="300" y1="130" x2="300" y2="60" transform="rotate(90,300,300)"/>
+    <line x1="300" y1="130" x2="300" y2="60" transform="rotate(120,300,300)"/>
+    <line x1="300" y1="130" x2="300" y2="60" transform="rotate(150,300,300)"/>
+    <line x1="300" y1="130" x2="300" y2="60" transform="rotate(180,300,300)"/>
+    <line x1="300" y1="130" x2="300" y2="60" transform="rotate(210,300,300)"/>
+    <line x1="300" y1="130" x2="300" y2="60" transform="rotate(240,300,300)"/>
+    <line x1="300" y1="130" x2="300" y2="60" transform="rotate(270,300,300)"/>
+    <line x1="300" y1="130" x2="300" y2="60" transform="rotate(300,300,300)"/>
+    <line x1="300" y1="130" x2="300" y2="60" transform="rotate(330,300,300)"/>
+  </g>
+
+  <!-- Zodiac sign names in outer ring -->
+  <g font-family="Georgia, 'Times New Roman', serif" font-size="13" fill="#c9a84c" text-anchor="middle" letter-spacing="2">
+    <text transform="translate(300,72)" text-anchor="middle">ARIES</text>
+    <text transform="rotate(30,300,300) translate(300,72)" text-anchor="middle">TAURUS</text>
+    <text transform="rotate(60,300,300) translate(300,72)" text-anchor="middle">GEMINI</text>
+    <text transform="rotate(90,300,300) translate(300,72)" text-anchor="middle">CANCER</text>
+    <text transform="rotate(120,300,300) translate(300,72)" text-anchor="middle">LEO</text>
+    <text transform="rotate(150,300,300) translate(300,72)" text-anchor="middle">VIRGO</text>
+    <text transform="rotate(180,300,300) translate(300,72)" text-anchor="middle">LIBRA</text>
+    <text transform="rotate(210,300,300) translate(300,72)" text-anchor="middle">SCORPIO</text>
+    <text transform="rotate(240,300,300) translate(300,72)" text-anchor="middle">SAGITTARIUS</text>
+    <text transform="rotate(270,300,300) translate(300,72)" text-anchor="middle">CAPRICORN</text>
+    <text transform="rotate(300,300,300) translate(300,72)" text-anchor="middle">AQUARIUS</text>
+    <text transform="rotate(330,300,300) translate(300,72)" text-anchor="middle">PISCES</text>
+  </g>
+
+  <!-- Zodiac symbols in inner sections -->
+  <g font-family="serif" font-size="26" fill="#e8c56d" text-anchor="middle" dominant-baseline="central">
+    <!-- Aries -->
+    <text transform="translate(300,155)" text-anchor="middle">&#x2648;</text>
+    <!-- Taurus -->
+    <text transform="rotate(30,300,300) translate(300,155)" text-anchor="middle">&#x2649;</text>
+    <!-- Gemini -->
+    <text transform="rotate(60,300,300) translate(300,155)" text-anchor="middle">&#x264A;</text>
+    <!-- Cancer -->
+    <text transform="rotate(90,300,300) translate(300,155)" text-anchor="middle">&#x264B;</text>
+    <!-- Leo -->
+    <text transform="rotate(120,300,300) translate(300,155)" text-anchor="middle">&#x264C;</text>
+    <!-- Virgo -->
+    <text transform="rotate(150,300,300) translate(300,155)" text-anchor="middle">&#x264D;</text>
+    <!-- Libra -->
+    <text transform="rotate(180,300,300) translate(300,155)" text-anchor="middle">&#x264E;</text>
+    <!-- Scorpio -->
+    <text transform="rotate(210,300,300) translate(300,155)" text-anchor="middle">&#x264F;</text>
+    <!-- Sagittarius -->
+    <text transform="rotate(240,300,300) translate(300,155)" text-anchor="middle">&#x2650;</text>
+    <!-- Capricorn -->
+    <text transform="rotate(270,300,300) translate(300,155)" text-anchor="middle">&#x2651;</text>
+    <!-- Aquarius -->
+    <text transform="rotate(300,300,300) translate(300,155)" text-anchor="middle">&#x2652;</text>
+    <!-- Pisces -->
+    <text transform="rotate(330,300,300) translate(300,155)" text-anchor="middle">&#x2653;</text>
+  </g>
+</svg>

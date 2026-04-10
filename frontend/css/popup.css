@@ -1,0 +1,308 @@
+/* ========================================
+   Free Book Opt-in Popup
+   ======================================== */
+
+:root {
+  --popup-navy-dark: #0b1d2c;
+  --popup-navy: #0f2a3d;
+  --popup-navy-light: #143a52;
+  --popup-gold: #d4a54a;
+  --popup-gold-light: #e8c56d;
+  --popup-gold-muted: #c9a84c;
+  --popup-text: #c8d4db;
+  --popup-text-light: #e0e8ed;
+  --popup-border: rgba(201, 168, 76, 0.15);
+  --popup-radius: 16px;
+}
+
+/* Overlay */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(5, 12, 20, 0.85);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+.popup-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Container */
+.popup-container {
+  position: relative;
+  display: flex;
+  width: 90vw;
+  max-width: 780px;
+  max-height: 90vh;
+  border-radius: var(--popup-radius);
+  overflow: hidden;
+  background: var(--popup-navy);
+  box-shadow:
+    0 0 0 1px var(--popup-border),
+    0 25px 60px rgba(0, 0, 0, 0.55),
+    0 0 120px rgba(212, 165, 74, 0.06);
+  transform: scale(0.92) translateY(20px);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.popup-overlay.active .popup-container {
+  transform: scale(1) translateY(0);
+}
+
+/* Close button */
+.popup-close {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  z-index: 2;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid rgba(200, 212, 219, 0.15);
+  border-radius: 50%;
+  color: var(--popup-text);
+  font-size: 20px;
+  cursor: pointer;
+  transition: border-color 0.25s, color 0.25s, background 0.25s;
+  line-height: 1;
+}
+
+.popup-close:hover {
+  border-color: var(--popup-gold);
+  color: var(--popup-gold-light);
+  background: rgba(212, 165, 74, 0.08);
+}
+
+/* Image half */
+.popup-image {
+  flex: 0 0 42%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(ellipse at 60% 50%, rgba(20, 58, 82, 0.6) 0%, transparent 70%),
+    var(--popup-navy-dark);
+  padding: 40px 20px;
+  overflow: hidden;
+}
+
+.popup-image img,
+.popup-image svg {
+  width: 88%;
+  max-width: 300px;
+  height: auto;
+  border-radius: 50%;
+  box-shadow:
+    0 0 40px rgba(212, 165, 74, 0.1),
+    0 0 80px rgba(20, 58, 82, 0.4);
+}
+
+/* Content half */
+.popup-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 48px 44px 40px 36px;
+}
+
+/* Stars */
+.popup-stars {
+  font-size: 18px;
+  color: var(--popup-gold);
+  letter-spacing: 4px;
+  margin-bottom: 16px;
+}
+
+/* Heading */
+.popup-heading {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--popup-gold);
+  margin: 0 0 16px;
+}
+
+/* Description */
+.popup-description {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--popup-text);
+  margin: 0 0 28px;
+}
+
+/* Form */
+.popup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.popup-input-wrapper {
+  position: relative;
+}
+
+.popup-input {
+  width: 100%;
+  padding: 16px 22px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 15px;
+  color: var(--popup-text-light);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(200, 212, 219, 0.12);
+  border-radius: 50px;
+  outline: none;
+  transition: border-color 0.25s, box-shadow 0.25s;
+  box-sizing: border-box;
+}
+
+.popup-input::placeholder {
+  color: rgba(200, 212, 219, 0.4);
+}
+
+.popup-input:focus {
+  border-color: var(--popup-gold-muted);
+  box-shadow: 0 0 0 3px rgba(212, 165, 74, 0.12);
+}
+
+/* Validation */
+.popup-input.error {
+  border-color: #e06060;
+  box-shadow: 0 0 0 3px rgba(224, 96, 96, 0.15);
+}
+
+.popup-error-msg {
+  display: none;
+  font-size: 13px;
+  color: #e06060;
+  margin-top: 6px;
+  padding-left: 22px;
+}
+
+.popup-error-msg.visible {
+  display: block;
+}
+
+/* Submit button */
+.popup-submit {
+  width: 100%;
+  padding: 16px 22px;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--popup-navy-dark);
+  background: linear-gradient(135deg, var(--popup-gold-light) 0%, var(--popup-gold) 100%);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+  letter-spacing: 0.3px;
+}
+
+.popup-submit:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(212, 165, 74, 0.35);
+  filter: brightness(1.05);
+}
+
+.popup-submit:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(212, 165, 74, 0.25);
+}
+
+/* Success state */
+.popup-success {
+  display: none;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.popup-success.visible {
+  display: block;
+}
+
+.popup-success-icon {
+  font-size: 48px;
+  margin-bottom: 12px;
+}
+
+.popup-success h3 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 24px;
+  color: var(--popup-gold);
+  margin: 0 0 10px;
+}
+
+.popup-success p {
+  font-size: 14px;
+  color: var(--popup-text);
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* Disclaimer */
+.popup-disclaimer {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 12px;
+  line-height: 1.55;
+  color: rgba(200, 212, 219, 0.4);
+  margin-top: 20px;
+}
+
+/* ========================================
+   Responsive
+   ======================================== */
+@media (max-width: 700px) {
+  .popup-container {
+    flex-direction: column;
+    max-width: 420px;
+  }
+
+  .popup-image {
+    flex: none;
+    padding: 28px 20px 16px;
+  }
+
+  .popup-image img,
+  .popup-image svg {
+    width: 50%;
+    max-width: 180px;
+  }
+
+  .popup-content {
+    padding: 20px 28px 32px;
+  }
+
+  .popup-heading {
+    font-size: 24px;
+  }
+
+  .popup-description {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 400px) {
+  .popup-content {
+    padding: 16px 20px 28px;
+  }
+
+  .popup-heading {
+    font-size: 21px;
+  }
+}
