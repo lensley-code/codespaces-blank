@@ -1,16 +1,14 @@
 /**
  * Cal.com configuration for Luz Astrology booking embeds.
  *
- * UPDATE THESE VALUES with your actual Cal.com username and event slugs.
- * - calUsername: your Cal.com username (from your cal.com profile URL)
- * - Each offering's `eventSlug` maps to a Cal.com event type slug
- *   (found in your Cal.com dashboard under Event Types)
+ * Username and event slugs sourced from the Cal.com Event Types dashboard.
+ * Each offering ID in App.jsx maps to its corresponding Cal.com event slug here.
  */
 
-export const CAL_USERNAME = 'YOUR_CALCOM_USERNAME'
+export const CAL_USERNAME = 'luzastrology'
 
 export const CAL_EVENT_SLUGS = {
-  'natal-promise': 'natal-promise',
-  'current-season': 'current-season',
-  'written-synthesis': 'written-synthesis',
+  'natal-chart-reading': 'natalchartreading',
+  'biblical-guidance': 'chartreading',
+  'transits-profections': 'chart-reading',
 }
