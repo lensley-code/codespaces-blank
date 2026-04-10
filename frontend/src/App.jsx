@@ -1,4 +1,7 @@
 import { useState, useCallback } from 'react'
+import { BookerEmbed } from '@calcom/atoms'
+import '@calcom/atoms/globals.min.css'
+import { CAL_USERNAME, CAL_EVENT_SLUGS } from './calConfig'
 import './App.css'
 
 const OFFERINGS = [
@@ -216,6 +219,8 @@ function TermsModal({ offering, onAccept, onClose }) {
 }
 
 function CalendarModal({ offering, onClose }) {
+  const eventSlug = CAL_EVENT_SLUGS[offering.id] || offering.id
+
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="calendar-modal-content" onClick={(e) => e.stopPropagation()}>
@@ -226,19 +231,17 @@ function CalendarModal({ offering, onClose }) {
           </button>
         </div>
         <div className="calendar-body">
-          {/* 
-            CAL.COM EMBED PLACEHOLDER
-            Replace this div with your Cal.com inline embed code.
-            Example: <Cal calLink="your-username/event-type" />
-          */}
-          <div className="calendar-placeholder">
-            <div className="placeholder-icon">📅</div>
-            <p>
-              Your Cal.com calendar will be embedded here. Share your Cal.com embed code and it
-              will be integrated seamlessly.
-            </p>
-            <code>calLink="your-link"</code>
-          </div>
+          <BookerEmbed
+            eventSlug={eventSlug}
+            username={CAL_USERNAME}
+            view="MONTH_VIEW"
+            customClassNames={{
+              bookerContainer: 'border-subtle border',
+            }}
+            onCreateBookingSuccess={() => {
+              console.log('Booking created successfully for', offering.name)
+            }}
+          />
         </div>
       </div>
     </div>
