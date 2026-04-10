@@ -1,3 +1,4 @@
+import { useState, useCallback, useMemo, useEffect } from 'react'
 import { TESTIMONIALS } from './testimonialsConfig'
 
 function StarRating({ rating }) {
@@ -29,8 +30,65 @@ function TestimonialCard({ testimonial }) {
   )
 }
 
+function ArrowLeft() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="15 18 9 12 15 6" />
+    </svg>
+  )
+}
+
+function ArrowRight() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="9 18 15 12 9 6" />
+    </svg>
+  )
+}
+
+function usePerPage() {
+  const getPerPage = () => {
+    if (typeof window === 'undefined') return 3
+    if (window.innerWidth >= 1024) return 3
+    if (window.innerWidth >= 600) return 2
+    return 1
+  }
+
+  const [perPage, setPerPage] = useState(getPerPage)
+
+  useEffect(() => {
+    const onResize = () => setPerPage(getPerPage())
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [])
+
+  return perPage
+}
+
 export default function Testimonials() {
-  const displayed = TESTIMONIALS.slice(0, 3)
+  const [page, setPage] = useState(0)
+  const perPage = usePerPage()
+
+  const totalPages = useMemo(
+    () => Math.ceil(TESTIMONIALS.length / perPage),
+    [perPage]
+  )
+
+  useEffect(() => {
+    if (page >= totalPages) setPage(Math.max(0, totalPages - 1))
+  }, [totalPages, page])
+
+  const displayed = useMemo(
+    () => TESTIMONIALS.slice(page * perPage, page * perPage + perPage),
+    [page, perPage]
+  )
+
+  const hasMultiplePages = totalPages > 1
+  const canPrev = page > 0
+  const canNext = page < totalPages - 1
+
+  const goPrev = useCallback(() => setPage((p) => Math.max(0, p - 1)), [])
+  const goNext = useCallback(() => setPage((p) => Math.min(totalPages - 1, p + 1)), [totalPages])
 
   return (
     <section className="testimonials-section" id="testimonials">
@@ -39,11 +97,48 @@ export default function Testimonials() {
         <h2 className="testimonials-title">Words from Seekers</h2>
       </div>
 
-      <div className="testimonials-grid">
-        {displayed.map((t) => (
-          <TestimonialCard key={t.id} testimonial={t} />
-        ))}
+      <div className="testimonials-carousel-wrap">
+        {hasMultiplePages && (
+          <button
+            className={`tm-arrow tm-arrow-left${canPrev ? '' : ' tm-arrow-disabled'}`}
+            onClick={goPrev}
+            disabled={!canPrev}
+            aria-label="Previous testimonials"
+          >
+            <ArrowLeft />
+          </button>
+        )}
+
+        <div className="testimonials-grid" key={page}>
+          {displayed.map((t) => (
+            <TestimonialCard key={t.id} testimonial={t} />
+          ))}
+        </div>
+
+        {hasMultiplePages && (
+          <button
+            className={`tm-arrow tm-arrow-right${canNext ? '' : ' tm-arrow-disabled'}`}
+            onClick={goNext}
+            disabled={!canNext}
+            aria-label="Next testimonials"
+          >
+            <ArrowRight />
+          </button>
+        )}
       </div>
+
+      {hasMultiplePages && (
+        <div className="tm-dots">
+          {Array.from({ length: totalPages }, (_, i) => (
+            <button
+              key={i}
+              className={`tm-dot${i === page ? ' active' : ''}`}
+              onClick={() => setPage(i)}
+              aria-label={`Page ${i + 1}`}
+            />
+          ))}
+        </div>
+      )}
 
       <div className="testimonials-cta">
         <a href="#offerings" className="testimonials-cta-btn">
