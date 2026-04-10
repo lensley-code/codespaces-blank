@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import { BookerEmbed } from '@calcom/atoms'
 import '@calcom/atoms/globals.min.css'
 import { CAL_USERNAME, CAL_EVENT_SLUGS } from './calConfig'
@@ -92,21 +92,35 @@ function IconBook() {
 const iconMap = { globe: IconGlobe, sun: IconSun, book: IconBook }
 
 function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false)
+
+  const closeMenu = useCallback(() => setMenuOpen(false), [])
+
   return (
     <nav className="navbar">
       <a href="#" className="navbar-brand">
         <span className="star">✦</span>
         <span>Luz Astrology</span>
       </a>
-      <ul className="navbar-links">
-        <li><a href="#">Learn More</a></li>
-        <li><a href="#">How It Works</a></li>
-        <li><a href="#">Offerings</a></li>
-        <li><a href="#">Philosophy</a></li>
-        <li><a href="#">Readings</a></li>
-        <li><a href="#">FAQ</a></li>
+      <ul className={`navbar-links${menuOpen ? ' open' : ''}`}>
+        <li><a href="#" onClick={closeMenu}>Learn More</a></li>
+        <li><a href="#" onClick={closeMenu}>How It Works</a></li>
+        <li><a href="#offerings" onClick={closeMenu}>Offerings</a></li>
+        <li><a href="#" onClick={closeMenu}>Philosophy</a></li>
+        <li><a href="#" onClick={closeMenu}>Readings</a></li>
+        <li><a href="#" onClick={closeMenu}>FAQ</a></li>
       </ul>
       <a href="#offerings" className="navbar-cta">Book a Reading →</a>
+      <button
+        className={`hamburger${menuOpen ? ' open' : ''}`}
+        onClick={() => setMenuOpen((v) => !v)}
+        aria-label="Toggle menu"
+        aria-expanded={menuOpen}
+      >
+        <span />
+        <span />
+        <span />
+      </button>
     </nav>
   )
 }
@@ -251,6 +265,15 @@ function CalendarModal({ offering, onClose }) {
 function App() {
   const [termsOffering, setTermsOffering] = useState(null)
   const [calendarOffering, setCalendarOffering] = useState(null)
+
+  useEffect(() => {
+    if (termsOffering || calendarOffering) {
+      document.body.classList.add('modal-open')
+    } else {
+      document.body.classList.remove('modal-open')
+    }
+    return () => document.body.classList.remove('modal-open')
+  }, [termsOffering, calendarOffering])
 
   const handleBook = useCallback((offering) => {
     setTermsOffering(offering)
