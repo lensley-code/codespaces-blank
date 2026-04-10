@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback, useEffect } from 'react'
-import { SOCIAL_POSTS, SOCIAL_HANDLE, INSTAGRAM_URL } from './socialFeedConfig'
+import { SOCIAL_POSTS, SOCIAL_HANDLE, INSTAGRAM_URL, TIKTOK_URL } from './socialFeedConfig'
 
 function PlayIcon() {
   return (
@@ -27,7 +27,7 @@ function ArrowIcon({ direction }) {
 
 function InstagramIcon() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="ig-icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="social-link-icon">
       <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
       <circle cx="12" cy="12" r="5" />
       <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none" />
@@ -35,11 +35,39 @@ function InstagramIcon() {
   )
 }
 
+function TikTokIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className="social-link-icon">
+      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 0 0-.79-.05A6.34 6.34 0 0 0 3.15 15a6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.69a8.28 8.28 0 0 0 4.76 1.51V6.75a4.83 4.83 0 0 1-1-.06z" />
+    </svg>
+  )
+}
+
+function PlatformBadge({ platform }) {
+  if (platform === 'tiktok') {
+    return (
+      <span className="reel-platform-badge reel-platform-tiktok" aria-label="TikTok">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="10" height="10">
+          <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 0 0-.79-.05A6.34 6.34 0 0 0 3.15 15a6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.69a8.28 8.28 0 0 0 4.76 1.51V6.75a4.83 4.83 0 0 1-1-.06z" />
+        </svg>
+      </span>
+    )
+  }
+  return (
+    <span className="reel-platform-badge reel-platform-instagram" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="10" height="10">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+        <circle cx="12" cy="12" r="5" />
+      </svg>
+    </span>
+  )
+}
+
 function ReelCard({ post, onClick }) {
   const [imgLoaded, setImgLoaded] = useState(false)
 
   return (
-    <button className="reel-card" onClick={() => onClick(post)} aria-label={`Play ${post.caption}`}>
+    <button className="reel-card" onClick={() => onClick(post)} aria-label={`Play ${post.caption} on ${post.platform}`}>
       <div className="reel-thumbnail-wrap">
         {!imgLoaded && <div className="reel-skeleton" />}
         <img
@@ -55,6 +83,7 @@ function ReelCard({ post, onClick }) {
           </div>
         </div>
         {post.episode && <span className="reel-episode">{post.episode}</span>}
+        <PlatformBadge platform={post.platform} />
       </div>
       <p className="reel-caption">{post.caption}</p>
     </button>
@@ -62,6 +91,8 @@ function ReelCard({ post, onClick }) {
 }
 
 function ReelModal({ post, onClose }) {
+  const isTikTok = post.platform === 'tiktok'
+
   useEffect(() => {
     document.body.classList.add('modal-open')
     return () => document.body.classList.remove('modal-open')
@@ -75,7 +106,7 @@ function ReelModal({ post, onClose }) {
 
   return (
     <div className="modal-overlay reel-modal-overlay" onClick={onClose}>
-      <div className="reel-modal-content" onClick={(e) => e.stopPropagation()}>
+      <div className={`reel-modal-content${isTikTok ? ' reel-modal-tiktok' : ''}`} onClick={(e) => e.stopPropagation()}>
         <button className="close-btn reel-close-btn" onClick={onClose} aria-label="Close">✕</button>
         <div className="reel-embed-wrap">
           <iframe
@@ -85,7 +116,19 @@ function ReelModal({ post, onClose }) {
             allowFullScreen
             allow="autoplay; encrypted-media"
             className="reel-iframe"
+            sandbox="allow-scripts allow-same-origin allow-popups allow-presentation"
           />
+        </div>
+        <div className="reel-modal-source">
+          {isTikTok ? (
+            <span className="reel-source-label reel-source-tiktok">
+              <TikTokIcon /> TikTok
+            </span>
+          ) : (
+            <span className="reel-source-label reel-source-instagram">
+              <InstagramIcon /> Instagram
+            </span>
+          )}
         </div>
       </div>
     </div>
@@ -173,10 +216,19 @@ export default function SocialFeed() {
           href={INSTAGRAM_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="social-btn social-btn-follow"
+          className="social-btn social-btn-follow social-btn-instagram"
         >
           <InstagramIcon />
           Follow on Instagram
+        </a>
+        <a
+          href={TIKTOK_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="social-btn social-btn-follow social-btn-tiktok"
+        >
+          <TikTokIcon />
+          Follow on TikTok
         </a>
       </div>
 
