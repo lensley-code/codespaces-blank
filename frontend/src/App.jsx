@@ -3,6 +3,7 @@ import { BookerEmbed } from '@calcom/atoms'
 import '@calcom/atoms/globals.min.css'
 import { CAL_USERNAME, CAL_EVENT_SLUGS } from './calConfig'
 import SocialFeed from './SocialFeed'
+import Testimonials from './Testimonials'
 import './App.css'
 
 const OFFERINGS = [
@@ -314,6 +315,8 @@ function App() {
       </section>
 
       <SocialFeed />
+
+      <Testimonials />
 
       {termsOffering && (
         <TermsModal
