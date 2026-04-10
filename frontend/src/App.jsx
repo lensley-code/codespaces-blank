@@ -2,6 +2,7 @@ import { useState, useCallback, useEffect } from 'react'
 import { BookerEmbed } from '@calcom/atoms'
 import '@calcom/atoms/globals.min.css'
 import { CAL_USERNAME, CAL_EVENT_SLUGS } from './calConfig'
+import SocialFeed from './SocialFeed'
 import './App.css'
 
 const OFFERINGS = [
@@ -311,6 +312,8 @@ function App() {
           ))}
         </div>
       </section>
+
+      <SocialFeed />
 
       {termsOffering && (
         <TermsModal
